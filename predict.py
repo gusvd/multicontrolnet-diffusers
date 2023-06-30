@@ -17,7 +17,8 @@ pipe = StableDiffusionControlNetPipeline.from_pretrained(
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
 
 # Optimize memory usage
-pipe.enable_xformers_memory_efficient_attention()
+pipe = pipe.to("cuda")
+# pipe.enable_xformers_memory_efficient_attention()
 pipe.enable_model_cpu_offload()
 
 # Prompts
